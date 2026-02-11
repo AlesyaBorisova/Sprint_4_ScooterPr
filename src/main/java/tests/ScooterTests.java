@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
-import Drivers.FactoryDriver;
-import Pages.MainPage;
-import Pages.WhoIsTheScooterFor;
-import Pages.AboutRent;
-import Pages.OrderConfirmation;
+import drivers.FactoryDriver;
+import pages.MainPage;
+import pages.WhoIsTheScooterFor;
+import pages.AboutRent;
+import pages.OrderConfirmation;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -46,7 +46,7 @@ public class ChromeScooterTests {
         this.commentForCourier = commentForCourier;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[][] testOrderForm() {
         return new Object[][]{
                 {"Наташа", "Иванова", "Обручева 3", "89991234567", "Профсоюзная", "top",
