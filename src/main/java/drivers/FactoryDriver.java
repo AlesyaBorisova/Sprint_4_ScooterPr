@@ -1,24 +1,30 @@
-package Drivers;
+package drivers;
 
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.MainPage;
 
 import java.time.Duration;
 
 
 public class FactoryDriver extends ExternalResource {
     private WebDriver driver;
+    private MainPage mainPage;
 
     public WebDriver getDriver() {
+
         return driver;
     }
 
     @Override
     protected void before() {
         initDriver();
+        mainPage = new MainPage(driver);
+        mainPage.openPage(); // Открывает страницу сайта
+        mainPage.acceptCookie(); // Принимает куки
     }
 
     @Override
@@ -32,8 +38,7 @@ public class FactoryDriver extends ExternalResource {
         } else {
             startChrome();
         }
-
-    }
+   }
 
     private void startFirefox() {
         WebDriverManager.firefoxdriver().setup();

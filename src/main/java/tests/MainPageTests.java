@@ -1,7 +1,7 @@
-package Tests;
+package tests;
 
-import Drivers.FactoryDriver;
-import Pages.MainPage;
+import drivers.FactoryDriver;
+import pages.MainPage;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,13 +42,11 @@ public class MainPageTests {
     public void testFAQDropdown() { // Проверяет выпадающий список "Вопросы о важном"
         WebDriver driver = factoryDriver.getDriver();
         MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
-        mainPage.AcceptCookie();
+
 
         mainPage.clickQuestion(questionText);
         String actualAnswer = mainPage.getAnswerText(expectedAnswer);
         assertEquals(expectedAnswer, actualAnswer);
 
-        driver.quit();
     }
 }

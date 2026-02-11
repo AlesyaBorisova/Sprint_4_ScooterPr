@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 
 @RunWith(Parameterized.class)
-public class ChromeScooterTests {
+public class ScooterTests {
 
     private final String firstName;
     private final String secondName;
@@ -29,7 +29,7 @@ public class ChromeScooterTests {
     private final String commentForCourier;
 
 
-    public ChromeScooterTests(
+    public ScooterTests(
             String firstName, String secondName, String address, String telephone,
             String metroStation, String buttonLocation, String whenScooter,
             String rentPeriod, String scooterColor, String commentForCourier) {
@@ -65,14 +65,12 @@ public class ChromeScooterTests {
     public void testFullOrderFlow() { // Проверяет полный путь заказа
         WebDriver driver = factoryDriver.getDriver();
         MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
-        mainPage.AcceptCookie();
+
 
         WhoIsTheScooterFor whoIsTheScooterFor = new WhoIsTheScooterFor(driver);
         AboutRent aboutRent = whoIsTheScooterFor.fillFormAndGoToAboutRent(firstName, secondName, address, telephone, metroStation, buttonLocation);
         OrderConfirmation confirmation = aboutRent.fillFormAndSubmitOrder(whenScooter, rentPeriod, scooterColor, commentForCourier);
         assertTrue(confirmation.isOrderSuccessful());
-        driver.quit();
     }
 }
 

@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,19 +21,17 @@ public class MainPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-
     public void openPage() { // Открывает стартовую страницу
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
-    public void AcceptCookie() { // Принимает куки
+    public void acceptCookie() { // Принимает куки
 
         WebElement element = driver.findElement(acceptCookie);
         element.click();
-
     }
 
-    public void clickQuestion(String questionText) {   // Кликает по заголовку вопроса
+        public void clickQuestion(String questionText) {   // Кликает по заголовку вопроса
         String questionXpath = "//div[@class='accordion__button' and contains(text(), '" + questionText + "')]";
         WebElement question = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(questionXpath)));
         question.click();

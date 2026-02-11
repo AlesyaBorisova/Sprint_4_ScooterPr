@@ -1,11 +1,8 @@
-package Pages;
+package pages;
 
 
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
@@ -62,6 +59,10 @@ public class AboutRent {
     private OrderConfirmation submitOrder() { // Подтверждает заказ
         wait.until(ExpectedConditions.visibilityOfElementLocated(orderPicture));
         wait.until(ExpectedConditions.elementToBeClickable(yesButton)).click();
+        String currentUrl = driver.getCurrentUrl();
+        wait.until(webDriver -> !webDriver.getCurrentUrl().equals(currentUrl));
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
         return new OrderConfirmation(driver);
 
     }

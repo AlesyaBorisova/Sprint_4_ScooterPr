@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 
 import org.openqa.selenium.WebDriver;
@@ -23,8 +23,8 @@ public class OrderConfirmation {
 
 
     public boolean isOrderSuccessful() {  // Проверяет, что заказ успешно оформлен
-
         WebElement popup = wait.until(ExpectedConditions.visibilityOfElementLocated(successPopup));
         return popup.isDisplayed();
+
     }
 }
